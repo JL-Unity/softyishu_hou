@@ -9,12 +9,8 @@ public interface BookMapper {
     int insert(Book record);
 
     Book selectByPrimaryKey(Integer id);
-
     List<Book> selectAll();
-
     int updateByPrimaryKey(Book record);
-
-
     List<Book> selectbytypeid(Integer typeid);
 
     List<Book> selectbyuserid(Integer userid);
