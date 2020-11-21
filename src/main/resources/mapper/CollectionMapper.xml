@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.hotel.dao.CollectionMapper" >
+  <resultMap id="BaseResultMap" type="com.example.hotel.baen.Collection" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="bookid" property="bookid" jdbcType="INTEGER" />
+    <result column="userid" property="userid" jdbcType="INTEGER" />
+    <result column="info" property="info" jdbcType="VARCHAR" />
+    <result column="time" property="time" jdbcType="VARCHAR" />
+    <result column="typeid" property="typeid" jdbcType="INTEGER" />
+    <result column="bookimg" property="bookimg" jdbcType="VARCHAR" />
+    <result column="bookname" property="bookname" jdbcType="VARCHAR" />
+    <result column="buyorsell" property="buyorsell" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from collection
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.hotel.baen.Collection" >
+    insert into collection (id, bookid, userid, 
+      info, time, typeid, 
+      bookimg, bookname, buyorsell
+      )
+    values (#{id,jdbcType=INTEGER}, #{bookid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, 
+      #{info,jdbcType=VARCHAR}, #{time,jdbcType=VARCHAR}, #{typeid,jdbcType=INTEGER}, 
+      #{bookimg,jdbcType=VARCHAR}, #{bookname,jdbcType=VARCHAR}, #{buyorsell,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.example.hotel.baen.Collection" >
+    update collection
+    set bookid = #{bookid,jdbcType=INTEGER},
+      userid = #{userid,jdbcType=INTEGER},
+      info = #{info,jdbcType=VARCHAR},
+      time = #{time,jdbcType=VARCHAR},
+      typeid = #{typeid,jdbcType=INTEGER},
+      bookimg = #{bookimg,jdbcType=VARCHAR},
+      bookname = #{bookname,jdbcType=VARCHAR},
+      buyorsell = #{buyorsell,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, bookid, userid, info, time, typeid, bookimg, bookname, buyorsell
+    from collection
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, bookid, userid, info, time, typeid, bookimg, bookname, buyorsell
+    from collection
+  </select>
+  <select id="selectAllbyuser" resultMap="BaseResultMap" >
+    select *
+    from collection
+
+        where userid = #{userid}
+
+  </select>
+
+  <select id="selectonebyub" resultMap="BaseResultMap" >
+    select *
+    from collection
+        where userid = #{userid}  and bookid = #{bookid}
+
+  </select>
+</mapper>
